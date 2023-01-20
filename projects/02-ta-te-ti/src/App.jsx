@@ -5,13 +5,33 @@ import Square from './components/Square';
 import {TURNS} from './constants';
 import {checkEndGame, checkWinner} from './logic/board';
 import WinnerModal from './components/WinnerModal';
+import {saveGameToStorage, resetGameStorage} from './logic/storage/index';
 
 export default function App() {
-  const [board, setBoard] = useState(Array(9).fill(null));
-  const [turn, setTurn] = useState(TURNS.x);
+  const [board, setBoard] = useState(() => {
+    // si el localStorage es por fuera de la funcion
+    // cada vez que se renderice el componente,
+    // se obtiene el localStorage de vuelta --> ES LENTO!!!!
+    const boardFromStorage = localStorage.getItem('board');
+    return boardFromStorage
+      ? JSON.parse(boardFromStorage)
+      : Array(9).fill(null);
+  });
+
+  const [turn, setTurn] = useState(() => {
+    const turnsFromStorage = localStorage.getItem('turn');
+    return turnsFromStorage ? JSON.parse(turnsFromStorage) : TURNS.x;
+  });
 
   // null es que no hay ganador, false un empate
   const [winner, setWinner] = useState(null);
+
+  const resetGame = () => {
+    setBoard(Array(9).fill(null));
+    setTurn(TURNS.x);
+    setWinner(null);
+    resetGameStorage();
+  };
 
   const updateBoard = (index) => {
     // no actualizamos el estado
@@ -27,6 +47,8 @@ export default function App() {
     const newTurn = turn === TURNS.x ? TURNS.o : TURNS.x;
     setTurn(newTurn);
 
+    saveGameToStorage({newBoard, newTurn});
+
     // revisar si hay ganador
     const newWinner = checkWinner(newBoard);
     if (newWinner) {
@@ -35,12 +57,6 @@ export default function App() {
     } else if (checkEndGame(newBoard)) {
       setWinner(false); //empate
     }
-  };
-
-  const resetGame = () => {
-    setBoard(Array(9).fill(null));
-    setTurn(TURNS.x);
-    setWinner(null);
   };
 
   return (
