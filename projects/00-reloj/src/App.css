@@ -18,7 +18,11 @@
 }
 
 .card {
-  padding: 2em;
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .read-the-docs {
@@ -33,13 +37,15 @@
   filter: opacity(0.85);
 }
 
-.congratulations {
+h2 {
+  font-size: 1.5rem;
+  text-shadow: rgba(0, 0, 0, 0.65) 3px 3px;
 }
 
 .count-down {
+  width: 220px;
   border: solid 4px #000;
   box-shadow: rgba(0, 0, 0, 0.65) 8px 6px;
-  padding: 10px;
   background: rgb(131, 58, 180);
   background: linear-gradient(
     90deg,

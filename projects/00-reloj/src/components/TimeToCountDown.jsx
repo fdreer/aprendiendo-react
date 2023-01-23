@@ -3,13 +3,15 @@ export default function TimeToCountDown({countDown, isFinish}) {
   //   console.log(days, hours, minutes, seconds);
 
   return (
-    <article className="count-down">
-      <h2>
-        {countDown === null
-          ? 'Calculando...'
-          : `${countDown.days}:${countDown.hours}:${countDown.minutes}:${countDown.seconds}`}
-      </h2>
-      <h3 className="congratulations">{isFinish && '¡FELICIDADES!'}</h3>
-    </article>
+    <>
+      <article className="count-down">
+        <h2>
+          {countDown === null
+            ? 'Calculando...'
+            : `${countDown.days}:${countDown.hours}:${countDown.minutes}:${countDown.seconds}`}
+        </h2>
+      </article>
+      <h2>{isFinish && '¡FELICIDADES!'}</h2>
+    </>
   );
 }
