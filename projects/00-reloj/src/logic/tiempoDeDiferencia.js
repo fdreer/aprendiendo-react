@@ -1,6 +1,6 @@
-export default function tiempoDeDiferencia(limitDate) {
+export default function tiempoDeDiferencia(limitDateInMs) {
   const now = new Date().getTime();
-  const countDownDate = new Date(limitDate).getTime();
+  const countDownDate = new Date(limitDateInMs).getTime();
 
   if (countDownDate <= now) return false;
 
