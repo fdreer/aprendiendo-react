@@ -1,7 +1,7 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import './App.css';
-import Reloj from './components/Reloj';
 import CountDown from './components/CountDown';
+import Reloj from './components/Reloj';
 import Fecha from './components/Fecha';
 // import Countdown from 'react-countdown';
 

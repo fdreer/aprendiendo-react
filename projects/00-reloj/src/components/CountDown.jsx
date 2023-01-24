@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import tiempoDeDiferencia from '../logic/tiempoDeDiferencia';
-import {fechaImportantes} from '../constants';
+import {obtenerAniversario} from '../logic/obtenerAniversario';
 import TimeToCountDown from './TimeToCountDown';
 import fireworks from '../logic/fireworks';
 import macaFranco from '../assets/maca-franco.jpeg';
@@ -12,10 +12,10 @@ export default function CountDown() {
   useEffect(() => {
     if (!isFinish) {
       setTimeout(() => {
-        console.log('setTimeOut');
+        const aniversario = obtenerAniversario('Jan 26');
 
         // Time --> Diferencia de tiempo entre limitDate y now
-        const time = tiempoDeDiferencia(fechaImportantes.aniversario);
+        const time = tiempoDeDiferencia(aniversario);
 
         if (!time) {
           setCountDown({days: '0', hours: '00', minutes: '00', seconds: '00'});
@@ -26,7 +26,6 @@ export default function CountDown() {
       }, 1000);
     } else {
       fireworks();
-      console.log('Confetti');
     }
   }, [countDown]);
 
