@@ -4,7 +4,6 @@ import {fechaImportantes} from '../constants';
 import TimeToCountDown from './TimeToCountDown';
 import fireworks from '../logic/fireworks';
 import macaFranco from '../assets/maca-franco.jpeg';
-import heartSolid from '../assets/heart-solid.svg';
 
 export default function CountDown() {
   const [countDown, setCountDown] = useState(null);

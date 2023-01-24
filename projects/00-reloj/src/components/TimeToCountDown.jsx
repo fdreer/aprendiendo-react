@@ -11,7 +11,13 @@ export default function TimeToCountDown({countDown, isFinish}) {
             : `${countDown.days}:${countDown.hours}:${countDown.minutes}:${countDown.seconds}`}
         </h2>
       </article>
-      <h2>{isFinish && '¡FELICIDADES!'}</h2>
+      {isFinish && (
+        <>
+          <article>
+            <h2>¡FELICIDADES!</h2>
+          </article>
+        </>
+      )}
     </>
   );
 }
